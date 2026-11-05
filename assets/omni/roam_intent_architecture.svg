@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1760" height="1020" viewBox="0 0 1760 1020" role="img" aria-labelledby="title">
+<title id="title">Qwen3.5 shared ACT policy for Roam and Motion Intent, with task-aware trajectory training</title>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#6b7a89"/></marker></defs>
+<rect width="1760" height="1020" fill="white"/>
+<text x="42" y="55" fill="#263441" font-family="Georgia, Times New Roman, serif" font-size="34" font-weight="700" text-anchor="start">(a) Shared vision–language–action policy</text>
+<text x="1190" y="55" fill="#263441" font-family="Georgia, Times New Roman, serif" font-size="34" font-weight="700" text-anchor="start">(b) Training supervision</text>
+<path d="M1150,28 V980" fill="none" stroke="#cbd5dd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="275" y="112" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" text-anchor="middle">Task instruction</text>
+<text x="830" y="112" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" text-anchor="middle">Observation history</text>
+<rect x="45" y="135" width="475" height="170" rx="10" fill="#fcebd4" stroke="#c48b47" stroke-width="2"/>
+<text x="282" y="172" fill="#c48b47" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="middle">Roam</text>
+<text x="282" y="208" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle">“Roam slowly while prioritizing safety.”</text>
+<text x="282" y="250" fill="#c48b47" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="middle">Motion Intent</text>
+<text x="282" y="284" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="middle">e.g. “Turn left.” or “Stop.”</text>
+<rect x="590" y="135" width="510" height="170" rx="10" fill="#ffffff" stroke="#cbd5dd" stroke-width="2"/>
+<rect x="610" y="157" width="81" height="83" rx="4" fill="#f0f4f6" stroke="#cbd5dd" stroke-width="2"/>
+<path d="M610,240 L638.5,186.05 L656.5,186.05 L691,240 Z" fill="#dae4eb"/>
+<path d="M610,157 L638.5,186.05 L656.5,186.05 L691,157" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M610,240 L638.5,186.05 M691,240 L656.5,186.05" fill="none" stroke="#7098b9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M647.5,237 L647.5,192.05" fill="none" stroke="#4d9072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
+<text x="650" y="266" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" text-anchor="middle">−2.0</text>
+<rect x="707" y="157" width="81" height="83" rx="4" fill="#f0f4f6" stroke="#cbd5dd" stroke-width="2"/>
+<path d="M707,240 L737.0,186.05 L755.0,186.05 L788,240 Z" fill="#dae4eb"/>
+<path d="M707,157 L737.0,186.05 L755.0,186.05 L788,157" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M707,240 L737.0,186.05 M788,240 L755.0,186.05" fill="none" stroke="#7098b9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M746.0,237 L746.0,192.05" fill="none" stroke="#4d9072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
+<text x="747" y="266" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" text-anchor="middle">−1.5</text>
+<rect x="804" y="157" width="81" height="83" rx="4" fill="#f0f4f6" stroke="#cbd5dd" stroke-width="2"/>
+<path d="M804,240 L835.5,186.05 L853.5,186.05 L885,240 Z" fill="#dae4eb"/>
+<path d="M804,157 L835.5,186.05 L853.5,186.05 L885,157" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M804,240 L835.5,186.05 M885,240 L853.5,186.05" fill="none" stroke="#7098b9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M844.5,237 L844.5,192.05" fill="none" stroke="#4d9072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
+<text x="844" y="266" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" text-anchor="middle">−1.0</text>
+<rect x="901" y="157" width="81" height="83" rx="4" fill="#f0f4f6" stroke="#cbd5dd" stroke-width="2"/>
+<path d="M901,240 L934.0,186.05 L952.0,186.05 L982,240 Z" fill="#dae4eb"/>
+<path d="M901,157 L934.0,186.05 L952.0,186.05 L982,157" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M901,240 L934.0,186.05 M982,240 L952.0,186.05" fill="none" stroke="#7098b9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M943.0,237 L943.0,192.05" fill="none" stroke="#4d9072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
+<text x="941" y="266" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" text-anchor="middle">−0.5</text>
+<rect x="998" y="157" width="81" height="83" rx="4" fill="#f0f4f6" stroke="#cbd5dd" stroke-width="2"/>
+<path d="M998,240 L1032.5,186.05 L1050.5,186.05 L1079,240 Z" fill="#dae4eb"/>
+<path d="M998,157 L1032.5,186.05 L1050.5,186.05 L1079,157" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M998,240 L1032.5,186.05 M1079,240 L1050.5,186.05" fill="none" stroke="#7098b9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1041.5,237 L1041.5,192.05" fill="none" stroke="#4d9072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
+<text x="1038" y="266" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" text-anchor="middle">0.0 s</text>
+<text x="845" y="294" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" text-anchor="middle">5 RGB frames · 256 × 256 · 2 Hz</text>
+<path d="M282,306 V337" fill="none" stroke="#6b7a89" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M845,306 V337" fill="none" stroke="#6b7a89" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="45" y="352" width="475" height="66" rx="10" fill="#fcebd4" stroke="#c48b47" stroke-width="2"/>
+<text x="282" y="393" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="400" text-anchor="middle">Tokenizer + text embeddings</text>
+<rect x="590" y="352" width="510" height="66" rx="10" fill="#e0edf6" stroke="#7098b9" stroke-width="2"/>
+<text x="845" y="393" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="400" text-anchor="middle">Qwen3.5 vision encoder</text>
+<path d="M282,419 V454 H345 V477" fill="none" stroke="#6b7a89" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M845,419 V454 H720 V477" fill="none" stroke="#6b7a89" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="45" y="491" width="1055" height="85" rx="10" fill="#ffffff" stroke="#cbd5dd" stroke-width="2"/>
+<rect x="63" y="507" width="245" height="53" rx="7" fill="#fcebd4" stroke="#c48b47" stroke-width="2"/>
+<text x="185" y="542" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle">Instruction tokens</text>
+<rect x="326" y="507" width="554" height="53" rx="7" fill="#e0edf6" stroke="#7098b9" stroke-width="2"/>
+<text x="603" y="542" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle">Video tokens + timestamps + MRoPE</text>
+<rect x="898" y="507" width="184" height="53" rx="7" fill="#f6e0e6" stroke="#bd7189" stroke-width="2"/>
+<text x="990" y="542" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="middle">1 ACT token</text>
+<path d="M572,577 V609" fill="none" stroke="#6b7a89" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="45" y="624" width="1055" height="86" rx="10" fill="#fcebd4" stroke="#c48b47" stroke-width="2"/>
+<text x="572" y="663" fill="#263441" font-family="Georgia, Times New Roman, serif" font-size="34" font-weight="700" text-anchor="middle">Qwen3.5-0.8B language model</text>
+<text x="572" y="693" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="middle">Full-parameter fine-tuning</text>
+<path d="M572,711 V750" fill="none" stroke="#6b7a89" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="598" y="742" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start">ACT hidden state · 1024</text>
+<rect x="255" y="765" width="635" height="70" rx="10" fill="#e0f0e6" stroke="#4d9072" stroke-width="2"/>
+<text x="572" y="795" fill="#263441" font-family="Georgia, Times New Roman, serif" font-size="28" font-weight="700" text-anchor="middle">Shared trajectory head</text>
+<text x="572" y="821" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="middle">MLP: 1024 → 2048 → 2048 → 24</text>
+<path d="M572,836 V869" fill="none" stroke="#6b7a89" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="168" y="884" width="809" height="88" rx="10" fill="#f0f7f3" stroke="#4d9072" stroke-width="2"/>
+<text x="573" y="918" fill="#263441" font-family="Georgia, Times New Roman, serif" font-size="29" font-weight="700" text-anchor="middle">8 future waypoints (x, y, yaw)</text>
+<text x="573" y="952" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="middle">0.3, 0.6, …, 2.4 s · local robot frame</text>
+<rect x="1190" y="136" width="525" height="105" rx="10" fill="#e0edf6" stroke="#7098b9" stroke-width="2"/>
+<text x="1452" y="176" fill="#263441" font-family="Georgia, Times New Roman, serif" font-size="27" font-weight="700" text-anchor="middle">Recorded roaming trajectories</text>
+<text x="1452" y="215" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle">Future waypoints + validity mask</text>
+<path d="M1452,242 V279 H1315 V306" fill="none" stroke="#6b7a89" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M1452,279 H1586 V306" fill="none" stroke="#6b7a89" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="1190" y="320" width="250" height="154" rx="10" fill="#e0f0e6" stroke="#4d9072" stroke-width="2"/>
+<text x="1315" y="358" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle">Roam</text>
+<text x="1315" y="393" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle">Fixed safety-oriented</text>
+<text x="1315" y="428" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle">instruction</text>
+<rect x="1465" y="320" width="250" height="154" rx="10" fill="#f6e0e6" stroke="#bd7189" stroke-width="2"/>
+<text x="1590" y="358" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle">Motion Intent</text>
+<text x="1590" y="393" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle">Derive one of six</text>
+<text x="1590" y="428" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle">instruction labels</text>
+<path d="M1315,475 V515 H1452 V548" fill="none" stroke="#6b7a89" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M1590,475 V515 H1452" fill="none" stroke="#6b7a89" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1190" y="561" width="525" height="154" rx="10" fill="#f7f9fb" stroke="#6b7a89" stroke-width="2"/>
+<text x="1452" y="602" fill="#263441" font-family="Georgia, Times New Roman, serif" font-size="29" font-weight="700" text-anchor="middle">Task-aware trajectory loss</text>
+<text x="1452" y="641" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="middle">Masked MSE per active task</text>
+<text x="1452" y="681" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="middle">Same trajectory target for both tasks</text>
+<path d="M1452,716 V755" fill="none" stroke="#6b7a89" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="1190" y="769" width="525" height="150" rx="10" fill="#fcebd4" stroke="#c48b47" stroke-width="2"/>
+<text x="1452" y="808" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="400" text-anchor="middle">Lightning · BF16 · DDP</text>
+<text x="1452" y="846" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="400" text-anchor="middle">2 microbatches per update</text>
+<text x="1452" y="884" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="400" text-anchor="middle">AdamW + OneCycle schedule</text>
+<text x="1452" y="964" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" text-anchor="middle">Intent labels form prompts during training.</text>
+<text x="1452" y="991" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" text-anchor="middle">Inference outputs a trajectory, not a class.</text>
+</svg>

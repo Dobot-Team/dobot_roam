@@ -1,0 +1,395 @@
+# Roam + Motion Intent variant of qwen35_08B_omni_v2_base_v2v3data.yaml.
+# The sampler normalizes 0.30 : 0.05 to 6 : 1; all omitted tasks have zero probability.
+# Model, loss definition, optimizer and training schedule are preserved.
+seed: 42
+model:
+  model_type: qwen35_omni
+  planner:
+    type: OmniVLNPlannerWithActToken
+    image_token_id: 248056
+    video_token_id: 248057
+    use_uint8_input_images: true
+    normalized_data_type: fp32
+    normalize_images: true
+    image_mean:
+    - 0.5
+    - 0.5
+    - 0.5
+    image_std:
+    - 0.5
+    - 0.5
+    - 0.5
+    freeze_patterns: []
+    output_scale:
+    - 2.0
+    - 2.0
+    - 1.0
+    vision_language_model:
+      type: OfficialQwen35VLM
+      pretrained_path: /mnt/mh4-local-nvme/users/wcr/data/wcr/weights/public/qwen/qwen3.5_0.8B/model.safetensors-00001-of-00001.safetensors
+      pretrained_strict: false
+      treat_image_sequence_as_video: true
+      text_config:
+        vocab_size: 248320
+        hidden_size: 1024
+        intermediate_size: 3584
+        num_hidden_layers: 24
+        num_attention_heads: 8
+        num_key_value_heads: 2
+        head_dim: 256
+        hidden_act: silu
+        rms_norm_eps: 1.0e-06
+        tie_word_embeddings: true
+        attention_bias: false
+        attn_output_gate: true
+        linear_conv_kernel_dim: 4
+        linear_key_head_dim: 128
+        linear_value_head_dim: 128
+        linear_num_key_heads: 16
+        linear_num_value_heads: 16
+        full_attention_interval: 4
+        max_position_embeddings: 262144
+        rope_parameters:
+          rope_type: default
+          rope_theta: 10000000
+          partial_rotary_factor: 0.25
+          mrope_interleaved: true
+          mrope_section:
+          - 11
+          - 11
+          - 10
+      vision_config:
+        depth: 12
+        hidden_size: 768
+        hidden_act: gelu_pytorch_tanh
+        intermediate_size: 3072
+        num_heads: 12
+        in_channels: 3
+        patch_size: 16
+        spatial_merge_size: 2
+        temporal_patch_size: 2
+        out_hidden_size: 1024
+        num_position_embeddings: 2304
+    trajectory_pred_head:
+      type: OmTrackPlannerHead
+      input_channels: 1024
+      hidden_channels:
+      - 2048
+      - 2048
+      num_waypoints: 8
+      coord_dim: 3
+      use_tanh: false
+    task_loss:
+      type: TaskAwareTrajectoryRegressionLoss
+      loss_fn: mse
+      coord_scale:
+      - 2.0
+      - 2.0
+      - 1.0
+      global_loss_scale: 10.0
+      loss_weights:
+        tracking: 1.0
+        roaming: 1.0
+        intent: 1.0
+        point_nav: 1.0
+        image_nav: 1.0
+data:
+  dataset_type: omni
+  training_dataloader:
+    type: DataLoader
+    batch_size: 72
+    num_workers: 2
+    drop_last: true
+    pin_memory: true
+    persistent_workers: true
+    dataset:
+      type: DobotOmniRGBDataset
+      json_path: /mnt/mh4-local-nvme/users/wcr/data/wcr/datasets/20261015/dobot/train
+      additional_json_paths:
+      - /mnt/mh4-local-nvme/users/wcr/data/wcr/datasets/20261018/dobot/train
+      task_sampling:
+        seed: 42
+        samples_per_epoch: auto
+        ratios:
+          roaming: 0.3
+          intent: 0.05
+      source_sampling:
+        mode: conditional
+        weights_by_task:
+          roaming:
+            dobot_roaming: 1.0
+          intent:
+            dobot_roaming: 1.0
+      task_processors:
+        roaming:
+          type: RoamingTaskProcessor
+          instruction: Roam slowly while prioritizing safety.
+        intent:
+          type: IntentTaskProcessor
+          prompts:
+            left_turn: Turn left.
+            forward_left: Move forward-left.
+            straight: Go straight.
+            forward_right: Move forward-right.
+            right_turn: Turn right.
+            stop: Stop.
+          stop_max_translation_m: 0.2
+          stop_max_abs_yaw_rad: 0.15
+          straight_max_abs_yaw_rad: 0.15
+          straight_max_abs_path_bearing_rad: 0.15
+          turn_min_abs_deviation_rad: 0.45
+      history: 31
+      num_waypoints: 8
+      coord_dim: 3
+      trajectory_dt: 0.1
+      waypoint_dt: 0.3
+      trajectory_padding_value: -1.0
+      trackvla_time_retargeting: null
+      shuffle: true
+      seed: 42
+      mode: train
+      history_padding: earliest
+      worker_shard_batch_size: null
+      shuffle_block_size: 256
+      raw_camera: undist_cam1
+      raw_record_cache_size: 16
+      img_size: 256
+      num_input_frames: 5
+      input_hz: 2.0
+      temporal_patch_size: 2
+      frame_index_hz: 10.0
+      resample_on_error: true
+      max_resample_times: 100
+      data_processor_list:
+      - type: OmniVLNPromptProcessor
+        tokenizer_path: /mnt/mh4-local-nvme/users/wcr/data/wcr/weights/public/qwen/qwen3.5_0.8B/tokenizer.json
+        num_image_tokens: null
+        system_prompt: You are the navigation policy of a quadruped robot. Given the
+          observations and the instruction, decide where to go next.
+        instruction_template: Follow the person who is {TARGET_DESC}.
+        use_origin_prompt: true
+        image_token_id: 248056
+        video_token_id: 248057
+        vision_start_id: 248053
+        vision_end_id: 248054
+        use_vision_markers: true
+        vision_token_type: video
+        split_video_by_timestamps: true
+        timestamp_template: <{time:.2f}s>
+      - type: OmniRGBNoiseProcessor
+        std: 3.0
+    collate_fn:
+      type: omni_planner_collate_fn
+  validation_dataloader:
+    type: DataLoader
+    batch_size: 4
+    num_workers: 2
+    drop_last: false
+    pin_memory: true
+    persistent_workers: true
+    dataset:
+      type: DobotOmniRGBDataset
+      json_path: /mnt/mh4-local-nvme/users/wcr/data/wcr/datasets/20261015/dobot/val
+      additional_json_paths:
+      - /mnt/mh4-local-nvme/users/wcr/data/wcr/datasets/20261018/dobot/val
+      task_sampling:
+        seed: 42
+        samples_per_epoch: auto
+        ratios:
+          roaming: 0.3
+          intent: 0.05
+      source_sampling:
+        mode: conditional
+        weights_by_task:
+          roaming:
+            dobot_roaming: 1.0
+          intent:
+            dobot_roaming: 1.0
+      task_processors:
+        roaming:
+          type: RoamingTaskProcessor
+          instruction: Roam slowly while prioritizing safety.
+        intent:
+          type: IntentTaskProcessor
+          prompts:
+            left_turn: Turn left.
+            forward_left: Move forward-left.
+            straight: Go straight.
+            forward_right: Move forward-right.
+            right_turn: Turn right.
+            stop: Stop.
+          stop_max_translation_m: 0.2
+          stop_max_abs_yaw_rad: 0.15
+          straight_max_abs_yaw_rad: 0.15
+          straight_max_abs_path_bearing_rad: 0.15
+          turn_min_abs_deviation_rad: 0.45
+      history: 31
+      num_waypoints: 8
+      coord_dim: 3
+      trajectory_dt: 0.1
+      waypoint_dt: 0.3
+      trajectory_padding_value: -1.0
+      trackvla_time_retargeting: null
+      shuffle: false
+      seed: 42
+      mode: val
+      history_padding: earliest
+      worker_shard_batch_size: null
+      raw_camera: undist_cam1
+      raw_record_cache_size: 16
+      img_size: 256
+      num_input_frames: 5
+      input_hz: 2.0
+      temporal_patch_size: 2
+      frame_index_hz: 10.0
+      resample_on_error: true
+      max_resample_times: 100
+      data_processor_list:
+      - type: OmniVLNPromptProcessor
+        tokenizer_path: /mnt/mh4-local-nvme/users/wcr/data/wcr/weights/public/qwen/qwen3.5_0.8B/tokenizer.json
+        num_image_tokens: null
+        system_prompt: You are the navigation policy of a quadruped robot. Given the
+          observations and the instruction, decide where to go next.
+        instruction_template: Follow the person who is {TARGET_DESC}.
+        use_origin_prompt: true
+        image_token_id: 248056
+        video_token_id: 248057
+        vision_start_id: 248053
+        vision_end_id: 248054
+        use_vision_markers: true
+        vision_token_type: video
+        split_video_by_timestamps: true
+        timestamp_template: <{time:.2f}s>
+    collate_fn:
+      type: omni_planner_collate_fn
+  test_dataloader:
+    type: DataLoader
+    batch_size: 4
+    num_workers: 2
+    drop_last: false
+    pin_memory: true
+    persistent_workers: true
+    dataset:
+      type: DobotOmniRGBDataset
+      json_path: /mnt/mh4-local-nvme/users/wcr/data/wcr/datasets/20261015/dobot/val
+      additional_json_paths:
+      - /mnt/mh4-local-nvme/users/wcr/data/wcr/datasets/20261018/dobot/val
+      task_sampling:
+        seed: 42
+        samples_per_epoch: auto
+        ratios:
+          roaming: 0.3
+          intent: 0.05
+      source_sampling:
+        mode: conditional
+        weights_by_task:
+          roaming:
+            dobot_roaming: 1.0
+          intent:
+            dobot_roaming: 1.0
+      task_processors:
+        roaming:
+          type: RoamingTaskProcessor
+          instruction: Roam slowly while prioritizing safety.
+        intent:
+          type: IntentTaskProcessor
+          prompts:
+            left_turn: Turn left.
+            forward_left: Move forward-left.
+            straight: Go straight.
+            forward_right: Move forward-right.
+            right_turn: Turn right.
+            stop: Stop.
+          stop_max_translation_m: 0.2
+          stop_max_abs_yaw_rad: 0.15
+          straight_max_abs_yaw_rad: 0.15
+          straight_max_abs_path_bearing_rad: 0.15
+          turn_min_abs_deviation_rad: 0.45
+      history: 31
+      num_waypoints: 8
+      coord_dim: 3
+      trajectory_dt: 0.1
+      waypoint_dt: 0.3
+      trajectory_padding_value: -1.0
+      trackvla_time_retargeting: null
+      shuffle: false
+      seed: 42
+      mode: val
+      history_padding: earliest
+      worker_shard_batch_size: null
+      raw_camera: undist_cam1
+      raw_record_cache_size: 16
+      img_size: 256
+      num_input_frames: 5
+      input_hz: 2.0
+      temporal_patch_size: 2
+      frame_index_hz: 10.0
+      resample_on_error: true
+      max_resample_times: 100
+      data_processor_list:
+      - type: OmniVLNPromptProcessor
+        tokenizer_path: /mnt/mh4-local-nvme/users/wcr/data/wcr/weights/public/qwen/qwen3.5_0.8B/tokenizer.json
+        num_image_tokens: null
+        system_prompt: You are the navigation policy of a quadruped robot. Given the
+          observations and the instruction, decide where to go next.
+        instruction_template: Follow the person who is {TARGET_DESC}.
+        use_origin_prompt: true
+        image_token_id: 248056
+        video_token_id: 248057
+        vision_start_id: 248053
+        vision_end_id: 248054
+        use_vision_markers: true
+        vision_token_type: video
+        split_video_by_timestamps: true
+        timestamp_template: <{time:.2f}s>
+    collate_fn:
+      type: omni_planner_collate_fn
+training:
+  optimizer:
+    type: AdamW
+    betas:
+    - 0.9
+    - 0.95
+    eps: 1.0e-06
+    lr: 1.0e-05
+    weight_decay: 1.0e-05
+    use_param_groups: false
+    parameter_groups:
+    - name: backbone
+      default: true
+    - name: planner_head
+      patterns:
+      - act_token
+      - planner_heads.*
+      lr: 5.0e-05
+  lr_scheduler:
+    type: OneCycleLREarlyStop
+    max_lr:
+    - 1.0e-05
+    - 5.0e-05
+    div_factor: 10.0
+    final_div_factor: 100.0
+    annealing_effective_total_steps: 9000
+    total_steps: 9000
+    pct_start: 0.01
+    cycle_momentum: false
+    anneal_strategy: cos
+    last_epoch: -1
+  gradient_accum_steps: 2
+  gradient_clip_val: 1.0
+  save_every_n_steps: 3000
+  save_total_limit: 4
+trainer:
+  accelerator: gpu
+  devices: 8
+  num_nodes: 1
+  strategy: ddp_find_unused_parameters_true
+  precision: bf16-mixed
+  max_steps: 9000
+  max_epochs: -1
+  val_check_interval: 50000
+  limit_val_batches: 256
+  log_every_n_steps: 10
+  num_sanity_val_steps: 0
+  enable_progress_bar: false
+output_dir: outputs/qwen35_08B_roam_intent

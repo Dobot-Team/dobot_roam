@@ -1,0 +1,129 @@
+{
+  "source_directory": "/mnt/mh4-local-nvme/users/wcr/workspace/wcr/exps/20261014_eval_vis",
+  "source_config": "qwen35_08B_omni_v2_base.yaml",
+  "checkpoint_run": "20261013_b300_08b_omni_b72ga2",
+  "checkpoint_file": "checkpoint_5000.pt",
+  "checkpoint_step": 5000,
+  "split": "validation",
+  "coordinate_convention": "x forward, y left, yaw CCW; metres/radians",
+  "waypoint_interval_s": 0.3,
+  "prediction_horizon_s": 2.4,
+  "camera_overlay": "APPROXIMATE flat-ground projection (not calibrated)",
+  "export_notes": "Original SVG files are copied unchanged. PNG files are rasterized at the original 1600 x 1075 layout. Metrics describe individual displayed samples, not a benchmark aggregate.",
+  "samples": [
+    {
+      "id": "roaming_001",
+      "task": "roaming",
+      "instruction": "Roam slowly while prioritizing safety.",
+      "intent_class": null,
+      "source_svg": "roaming/sample_001.svg",
+      "source_json": "roaming/sample_001.json",
+      "original_svg_sha256": "0e1a3b80501b66f55d94c25738ccdc47d8222e277e965c4ade4d755b90f51770",
+      "source_json_sha256": "d56c796c6008845578eee23663be256576a0cdfc331e9b46ad79ef9d2d979828",
+      "png": "roaming_001.png",
+      "svg": "roaming_001.svg",
+      "metrics": {
+        "ade_m": 0.2004037498358991,
+        "fde_m": 0.39040035533483114,
+        "yaw_mae_deg": 7.238776635691615,
+        "valid_waypoints": 8,
+        "final_valid_waypoint_index": 7
+      }
+    },
+    {
+      "id": "roaming_002",
+      "task": "roaming",
+      "instruction": "Roam slowly while prioritizing safety.",
+      "intent_class": null,
+      "source_svg": "roaming/sample_002.svg",
+      "source_json": "roaming/sample_002.json",
+      "original_svg_sha256": "3c0a1533fa53eba2a0f7cdff6dc24a8d68f5846ab6d95ce64ce58300541fcd3c",
+      "source_json_sha256": "ec480bebb9b983b3d60367700cc06677a80f0f302d84bb95c101cf34c54727ec",
+      "png": "roaming_002.png",
+      "svg": "roaming_002.svg",
+      "metrics": {
+        "ade_m": 0.0771147079419984,
+        "fde_m": 0.13093760245295086,
+        "yaw_mae_deg": 2.0289932941823663,
+        "valid_waypoints": 8,
+        "final_valid_waypoint_index": 7
+      }
+    },
+    {
+      "id": "roaming_003",
+      "task": "roaming",
+      "instruction": "Roam slowly while prioritizing safety.",
+      "intent_class": null,
+      "source_svg": "roaming/sample_003.svg",
+      "source_json": "roaming/sample_003.json",
+      "original_svg_sha256": "063b3e12813acb0c473a937f7d06c6807399d0df29a9206002151ede62fee25d",
+      "source_json_sha256": "c4a7a60989a8c6a629b1df3b231529a5ff0e71715975d8f2b612355ba9f6c7fa",
+      "png": "roaming_003.png",
+      "svg": "roaming_003.svg",
+      "metrics": {
+        "ade_m": 0.16863554406321504,
+        "fde_m": 0.4004756867249637,
+        "yaw_mae_deg": 14.465968897024917,
+        "valid_waypoints": 8,
+        "final_valid_waypoint_index": 7
+      }
+    },
+    {
+      "id": "intent_001",
+      "task": "intent",
+      "instruction": "Go straight.",
+      "intent_class": "straight",
+      "source_svg": "intent/sample_001.svg",
+      "source_json": "intent/sample_001.json",
+      "original_svg_sha256": "fd5970e13b048dec3698265c5ff77f9641216a08037b1f993140460f244806cd",
+      "source_json_sha256": "15f10d06f6a16cb7fc9645fe887890a4143015480320a78c95454d5e6bb3f398",
+      "png": "intent_001.png",
+      "svg": "intent_001.svg",
+      "metrics": {
+        "ade_m": 0.028711530913692867,
+        "fde_m": 0.055409901500854536,
+        "yaw_mae_deg": 2.4690847968826732,
+        "valid_waypoints": 8,
+        "final_valid_waypoint_index": 7
+      }
+    },
+    {
+      "id": "intent_002",
+      "task": "intent",
+      "instruction": "Turn right.",
+      "intent_class": "right_turn",
+      "source_svg": "intent/sample_002.svg",
+      "source_json": "intent/sample_002.json",
+      "original_svg_sha256": "6e60d0fa554c2b266b4dbdbdfa4af1fdf7ec81a95a8ff642a9a6e7657c0427c1",
+      "source_json_sha256": "856bb6331d6985c23fa8064bae5487f267ec063a34ca1ea92c5c9980191e0edf",
+      "png": "intent_002.png",
+      "svg": "intent_002.svg",
+      "metrics": {
+        "ade_m": 0.12351397368319006,
+        "fde_m": 0.2783200874020254,
+        "yaw_mae_deg": 7.909305698021876,
+        "valid_waypoints": 8,
+        "final_valid_waypoint_index": 7
+      }
+    },
+    {
+      "id": "intent_003",
+      "task": "intent",
+      "instruction": "Move forward-left.",
+      "intent_class": "forward_left",
+      "source_svg": "intent/sample_003.svg",
+      "source_json": "intent/sample_003.json",
+      "original_svg_sha256": "094c322a328e347e62af0e7d53edc2defffdc7c1d9cee651628693925a3f9e5a",
+      "source_json_sha256": "ff6b5b8e80ec87f9679c97726374efddf6968e9a96e010f3dcdbc65d8ffa0014",
+      "png": "intent_003.png",
+      "svg": "intent_003.svg",
+      "metrics": {
+        "ade_m": 0.10805063015798344,
+        "fde_m": 0.30295611472720335,
+        "yaw_mae_deg": 10.488799442290851,
+        "valid_waypoints": 8,
+        "final_valid_waypoint_index": 7
+      }
+    }
+  ]
+}

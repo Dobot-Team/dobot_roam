@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1760" height="850" viewBox="0 0 1760 850" role="img" aria-labelledby="title">
+<title id="title">Roam and six motion-intent instructions illustrated by schematic local trajectories</title>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#6b7a89"/></marker></defs>
+<rect width="1760" height="850" fill="white"/>
+<text x="42" y="55" fill="#263441" font-family="Georgia, Times New Roman, serif" font-size="36" font-weight="700" text-anchor="start">Two tasks, one shared trajectory policy</text>
+<text x="42" y="97" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" text-anchor="start">RGB history + an instruction → 8 local future waypoints</text>
+<rect x="42" y="133" width="490" height="642" rx="12" fill="#ffffff" stroke="#4d9072" stroke-width="2"/>
+<rect x="42" y="133" width="490" height="88" rx="12" fill="#e0f0e6" stroke="#4d9072" stroke-width="2"/>
+<text x="287" y="188" fill="#263441" font-family="Georgia, Times New Roman, serif" font-size="35" font-weight="700" text-anchor="middle">Roam</text>
+<text x="287" y="265" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="400" text-anchor="middle">“Roam slowly while</text>
+<text x="287" y="301" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="400" text-anchor="middle">prioritizing safety.”</text>
+<rect x="92" y="346" width="390" height="285" rx="9" fill="#f8fbf9" stroke="#d6e5dc" stroke-width="2"/>
+<rect x="124" y="374" width="78" height="88" rx="4" fill="#e4e9e7" stroke="#c0cbc5" stroke-width="2"/>
+<rect x="365" y="415" width="80" height="111" rx="4" fill="#e4e9e7" stroke="#c0cbc5" stroke-width="2"/>
+<rect x="145" y="545" width="82" height="52" rx="4" fill="#e4e9e7" stroke="#c0cbc5" stroke-width="2"/>
+<path d="M290,599 C264,551 242,504 266,461 C288,423 309,407 306,372" fill="none" stroke="#4d9072" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<circle cx="281" cy="577" r="5" fill="#4d9072"/>
+<circle cx="272" cy="554" r="5" fill="#4d9072"/>
+<circle cx="261" cy="530" r="5" fill="#4d9072"/>
+<circle cx="256" cy="507" r="5" fill="#4d9072"/>
+<circle cx="260" cy="481" r="5" fill="#4d9072"/>
+<circle cx="273" cy="451" r="5" fill="#4d9072"/>
+<circle cx="289" cy="426" r="5" fill="#4d9072"/>
+<circle cx="302" cy="399" r="5" fill="#4d9072"/>
+<path d="M290,585 L277,612 L303,612 Z" fill="#263441"/>
+<text x="287" y="681" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="middle">A general navigation instruction.</text>
+<text x="287" y="716" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="middle">Supervised by recorded motion.</text>
+<text x="287" y="754" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" text-anchor="middle">Illustrative scene</text>
+<text x="585" y="175" fill="#263441" font-family="Georgia, Times New Roman, serif" font-size="35" font-weight="700" text-anchor="start">Motion Intent</text>
+<text x="585" y="213" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="400" text-anchor="start">Six language commands; continuous trajectory output.</text>
+<rect x="585" y="245" width="358" height="245" rx="10" fill="#ffffff" stroke="#cbd5dd" stroke-width="2"/>
+<text x="764" y="284" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="middle">Turn left.</text>
+<text x="764" y="315" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle">left_turn</text>
+<path d="M764,339 V458" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 7"/>
+<path d="M650,452 H878" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M764,445 L754,464 L774,464 Z" fill="#263441"/>
+<path d="M764,438 C764,388 744,368 673,368" fill="none" stroke="#7098b9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="967" y="245" width="358" height="245" rx="10" fill="#ffffff" stroke="#cbd5dd" stroke-width="2"/>
+<text x="1146" y="284" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="middle">Move forward-left.</text>
+<text x="1146" y="315" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle">forward_left</text>
+<path d="M1146,339 V458" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 7"/>
+<path d="M1032,452 H1260" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1146,445 L1136,464 L1156,464 Z" fill="#263441"/>
+<path d="M1146,438 Q1137,394 1100,344" fill="none" stroke="#7098b9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="1349" y="245" width="358" height="245" rx="10" fill="#ffffff" stroke="#cbd5dd" stroke-width="2"/>
+<text x="1528" y="284" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="middle">Go straight.</text>
+<text x="1528" y="315" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle">straight</text>
+<path d="M1528,339 V458" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 7"/>
+<path d="M1414,452 H1642" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1528,445 L1518,464 L1538,464 Z" fill="#263441"/>
+<path d="M1528,438 V341" fill="none" stroke="#7098b9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="585" y="512" width="358" height="245" rx="10" fill="#ffffff" stroke="#cbd5dd" stroke-width="2"/>
+<text x="764" y="551" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="middle">Move forward-right.</text>
+<text x="764" y="582" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle">forward_right</text>
+<path d="M764,606 V725" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 7"/>
+<path d="M650,719 H878" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M764,712 L754,731 L774,731 Z" fill="#263441"/>
+<path d="M764,705 Q773,661 810,611" fill="none" stroke="#7098b9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="967" y="512" width="358" height="245" rx="10" fill="#ffffff" stroke="#cbd5dd" stroke-width="2"/>
+<text x="1146" y="551" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="middle">Turn right.</text>
+<text x="1146" y="582" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle">right_turn</text>
+<path d="M1146,606 V725" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 7"/>
+<path d="M1032,719 H1260" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1146,712 L1136,731 L1156,731 Z" fill="#263441"/>
+<path d="M1146,705 C1146,655 1166,635 1237,635" fill="none" stroke="#7098b9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="1349" y="512" width="358" height="245" rx="10" fill="#ffffff" stroke="#cbd5dd" stroke-width="2"/>
+<text x="1528" y="551" fill="#263441" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="middle">Stop.</text>
+<text x="1528" y="582" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle">stop</text>
+<path d="M1528,606 V725" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 7"/>
+<path d="M1414,719 H1642" fill="none" stroke="#cbd5dd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1528,712 L1518,731 L1538,731 Z" fill="#263441"/>
+<rect x="1508" y="646" width="40" height="40" rx="5" fill="#bd7189"/>
+<text x="1528" y="631" fill="#bd7189" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" text-anchor="middle">Hold position</text>
+<text x="42" y="819" fill="#6b7a89" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start">Schematic task illustrations · paths are examples, not measured rollouts or evaluation results.</text>
+</svg>

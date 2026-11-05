@@ -1,0 +1,88 @@
+# TrackVLA trajectory + current-mask training with InternVL3-1B.
+# Set model.model_path to the actual local checkpoint before training.
+
+model:
+  model_path: "/home/jovyan/work/checkpoints/InternVL3-1B"
+  model_type: "internvl3"          # Required when model_path is an HF repo ID.
+  num_queries: 8                  # Learnable query tokens; set to 1 for one query -> all data.n_future waypoints.
+  freeze_vision: true
+  freeze_llm: false
+  freeze_mlp1: false
+  gradient_checkpointing: false   # Reduces memory during joint LLM/head training.
+  action_head_type: "mlp6"       # Keep the existing action-head checkpoint format.
+  action_head_dims: [512, 3]      # TrackVLA trajectory is (x, y, yaw).
+  dtype: "bf16"
+  attn_implementation: "sdpa"    # flash_attention_2 unavailable in current environment.
+  # Decoder-only, per-sample SAM2 supervision. The SAM2 source and default
+  # SAM2.1 Base+ YAML are bundled in vla/sam2; only the checkpoint is external.
+  sam2_config:
+    enabled: false
+    checkpoint: "vla/sam2/checkpoints/sam2.1_hiera_base_plus.pt"
+    feature_size: 16
+    train_decoder: true
+    loss_weight: 0.001
+    # null follows the selected SAM2 YAML; false uses the base decoder path.
+    use_high_res_features: true
+  # Compress only the past H-1 frames. The current frame retains all 256
+  # projected visual tokens for planning and SAM2 mask prediction.
+  history_compressor_config:
+    enabled: true
+    mode: "adaptive_pool"        # q_identity / adaptive_pool
+    box_embedding: false  # Set true for mask-box conditioning (q_identity only).
+    num_output_tokens: 16
+    num_layers: 3
+    num_heads: 8
+    hidden_size: 512                 # Internal Q-Former width; null uses the LLM width.
+    dropout: 0.1
+    mask_patch_threshold: 0.4
+
+data:
+  dataset_type: "trackvla"
+  # The at_train subset has JSONL manifests and is a good first source.  Add
+  # other subset paths with commas when enough CPU memory/time is available to
+  # build their large dataset.json indexes.
+  trackvla_sources: "/home/jovyan/work/dataset/sample/at_train_60,/home/jovyan/work/dataset/sample/dt_train_60,/home/jovyan/work/dataset/sample/stt_train_70,/home/jovyan/work/dataset/sample/dt_train_0.65"
+  num_history_frames: 8           # Includes the current RGB frame.
+  history_frame_interval: 1       # 0 means consecutive archive frames.
+  n_future: 8
+  trajectory_dim: 3
+  input_size: 448
+  batch_size: 8
+  num_workers: 4
+  val_split: 0.01                  # Split by .jpgs episode, never by frame.
+  prompt: "Predict the ego vehicle's future trajectory in the ego coordinate frame."
+  num_image_tokens: 256
+  # Truncation ceiling only; batches are dynamically right-padded to their
+  # actual longest prompt, so compressed sequences are not padded to 1200.
+  max_length: 1200
+  seed: 42
+  # Caches only lazy metadata offsets, not images or masks.
+  index_cache_dir: "/home/jovyan/work/embodyla_dobot_trackvla/cache/trackvla_indexes"
+  max_open_archives: 32
+  history_mask_augmentation:
+    enabled: true
+    clean_probability: 0.2
+
+training:
+  lr: 2.0e-5
+  weight_decay: 0.01
+  warmup_steps: 100
+  max_steps: -1
+  yaw_weight: 2.0
+  x_weight: 1.0
+  y_weight: 3.0
+  gradient_clip_val: 1.0
+  accumulate_grad_batches: 8
+  val_check_interval: 5000
+  log_every_n_steps: 10
+
+trainer:
+  accelerator: "gpu"
+  devices: 4
+  num_nodes: 1
+  strategy: "ddp_find_unused_parameters_true"
+  precision: "bf16-mixed"
+  max_epochs: 2
+  enable_checkpointing: true
+
+output_dir: "/home/jovyan/work/embodyla_dobot_trackvla/outputs/trackvla_internvl3_vla"
