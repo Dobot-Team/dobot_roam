@@ -19,8 +19,6 @@ Chengrui Wei<sup>1</sup>, Songyuan Liu<sup>1</sup><br>, Liu Liang<sup>1</sup>, P
 
 **DobotRoam** learns **Roam** and **Motion Intent** with one shared vision-language-action policy. Given a short history of RGB observations and a natural-language instruction, **Qwen3.5-0.8B** produces a single **ACT hidden state**. A shared trajectory head maps this state to **8 future egocentric waypoints**, each containing **x, y and yaw**.
 
-This recipe is derived from DobotNav's `qwen35_08B_omni_v2_base_v2v3data.yaml`. It retains the original backbone, ACT representation, trajectory definition and optimization method, while restricting task sampling to **Roam** and **Motion Intent** through the target project's Lightning training entry point.
-
 <img src="assets/omni/roam_intent_architecture.png" alt="Qwen3.5-0.8B policy: RGB history and task instruction feed one ACT token and a shared trajectory head; training uses Roam and Motion Intent trajectory supervision" width="100%">
 
 *Shared model and training supervision. Motion-intent labels are derived from ground-truth trajectories to construct instructions during training; inference consumes an instruction and predicts a trajectory.*
@@ -31,8 +29,6 @@ This recipe is derived from DobotNav's `qwen35_08B_omni_v2_base_v2v3data.yaml`. 
 - **[2026-11-04]** The original Qwen3.5 Omni model and optimization method were integrated with PyTorch Lightning.
 
 ## Qualitative results
-
-The following **six validation examples** come from the original Omni base recipe, `qwen35_08B_omni_v2_base.yaml`, at **checkpoint step 5000** in run `20261013_b300_08b_omni_b72ga2`. They were exported under `20261014_eval_vis`; [sample provenance and metrics](assets/omni/eval_20261014/manifest.json) are retained alongside the images. These are archived open-loop predictions from the original checkpoint, separate from the current two-task Lightning setup.
 
 **Green: ground truth. Orange: prediction.** Each visualization contains the current RGB input, a metric bird's-eye trajectory plot, and the five observation frames. Waypoints are spaced by **0.3 s**, spanning **2.4 s**. The camera overlay uses an **approximate, uncalibrated flat-ground projection**; the bird's-eye view uses local metric coordinates. No robot actuation is shown.
 
